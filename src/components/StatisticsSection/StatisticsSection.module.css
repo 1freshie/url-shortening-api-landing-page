@@ -1,0 +1,33 @@
+.stats {
+  background-color: hsl(0, 0%, 97%);
+}
+
+.stats__container {
+  margin: 0 11%;
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  width: 50%;
+  margin-top: 15%;
+  /* margin-bottom: 10%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content h1 {
+  font-size: 42px;
+  color: hsl(260, 8%, 14%);
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 21px;
+  color: hsl(257, 7%, 63%);
+}

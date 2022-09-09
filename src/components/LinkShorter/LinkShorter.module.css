@@ -1,0 +1,61 @@
+.input__container {
+  width: 78%;
+  margin: 0 11%;
+  padding: 3%;
+  border: 0;
+  border-radius: 10px;
+  background-color: hsl(257, 27%, 26%);
+  background-image: url('../../images/bg-shorten-desktop.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 10px; */
+  height: 20%;
+}
+
+.input__container div {
+  width: 100%;
+}
+
+.input__container input {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  /* margin-left: 30px; */
+  width: 95%;
+}
+
+.input__container button {
+  border: 0;
+  border-radius: 10px;
+  background: hsl(180, 66%, 49%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  height: 50px;
+  width: 180px;
+  cursor: pointer;
+  /* margin-right: 30px; */
+}
+
+.input__container  button:active {
+  background: hsl(180, 74%, 53%);
+}
+
+.input__error input {
+  border: 4px solid hsl(0, 87%, 67%);
+  color: hsl(0, 87%, 67%);
+}
+
+.text__error {
+  color: hsl(0, 87%, 67%);
+  font-style: italic;
+  font-size: 18px;
+}
