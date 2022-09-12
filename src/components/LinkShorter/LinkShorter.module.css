@@ -12,7 +12,7 @@
   justify-content: space-around;
   align-items: center;
   /* padding: 10px; */
-  height: 20%;
+  /* height: 20%; */
 }
 
 .input__container div {
@@ -29,6 +29,7 @@
   border-radius: 10px;
   /* margin-left: 30px; */
   width: 95%;
+  /* margin-bottom: 5px; */
 }
 
 .input__container button {
@@ -58,4 +59,20 @@
   color: hsl(0, 87%, 67%);
   font-style: italic;
   font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .input__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input__container input {
+    width: 100%;
+  }
+
+  .input__container button {
+    width: 100%;
+    margin-top: 20px;
+  }
 }

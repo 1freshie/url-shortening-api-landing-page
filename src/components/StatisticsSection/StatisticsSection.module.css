@@ -31,3 +31,9 @@
   font-size: 21px;
   color: hsl(257, 7%, 63%);
 }
+
+/* @media (max-width: 768px) {
+  .stats__container {
+    display: block;
+  }
+} */

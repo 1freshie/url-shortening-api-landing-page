@@ -9,23 +9,6 @@ const LinkShorter: React.FunctionComponent = () => {
   const [currentLink, setCurrentLink] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('SHORTED_LINKS');
-  //   console.log(data);
-  //   if (data?.length !== 0 && data !== null) {
-  //     setShortedLinks(JSON.parse(data));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (shortedLinks.length !== 0) {
-  //     window.localStorage.setItem(
-  //       'SHORTED_LINKS',
-  //       JSON.stringify(shortedLinks)
-  //     );
-  //   }
-  // }, [shortedLinks]);
-
   const linkInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentLink(event.target.value);
   };
@@ -61,15 +44,35 @@ const LinkShorter: React.FunctionComponent = () => {
     setCurrentLink('');
   };
 
-  let content = <p></p>;
+  useEffect(() => {
+    const shortLinkData = window.localStorage.getItem('SHORTED_LINKS');
+    const originalLinkData = window.localStorage.getItem('ORIGINAL_LINKS');
 
-  if (shortedLinks.length > 0) {
-    content = <ShortedLinksList shortedLinks={shortedLinks} originalLinks={originalLinks} />;
-  }
+    if (shortLinkData?.length !== 0 && shortLinkData !== null) {
+      setShortedLinks(JSON.parse(shortLinkData));
+    }
 
-  if (error) {
-    content = <p className={styles.text__error}>{error}</p>;
-  }
+    if (originalLinkData?.length !== 0 && originalLinkData !== null) {
+      setOriginalLinks(JSON.parse(originalLinkData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (shortedLinks.length !== 0) {
+      window.localStorage.setItem(
+        'SHORTED_LINKS',
+        JSON.stringify(shortedLinks)
+      );
+    }
+
+    if (originalLinks.length !== 0) {
+      window.localStorage.setItem(
+        'ORIGINAL_LINKS',
+        JSON.stringify(originalLinks)
+      );
+    }
+  }, [shortedLinks, originalLinks]);
+
 
   return (
     // <div className={`${styles.input__container} ${styles.input__error}`}>
@@ -94,11 +97,18 @@ const LinkShorter: React.FunctionComponent = () => {
             placeholder="Shorten link a here..."
             onChange={linkInputHandler}
           />
-          {error && content}
+          {error && <p className={styles.text__error}>{error}</p>}
         </div>
         <button onClick={linkShorteningHandler}>Shorten it!</button>
       </form>
-      <section>{content}</section>
+      <section>
+        {shortedLinks.length > 0 && (
+          <ShortedLinksList
+            shortedLinks={shortedLinks}
+            originalLinks={originalLinks}
+          />
+        )}
+      </section>
     </React.Fragment>
   );
 };

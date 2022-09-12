@@ -57,3 +57,20 @@
 .footer__container .li__social img:active {
   filter: sepia(100%) hue-rotate(190deg) saturate(500%);
 }
+
+@media (max-width: 768px) {
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+}

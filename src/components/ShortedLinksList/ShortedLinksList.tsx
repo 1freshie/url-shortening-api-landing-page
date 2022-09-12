@@ -8,9 +8,10 @@ type Props = {
 
 const ShortedLinksList: React.FunctionComponent<Props> = (props) => {
   return (
-    <ul className={styles.linkList}>
+    <ul className={styles.link__list}>
       {props.shortedLinks.map((shortLink, index) => (
         <LinkItem
+          key={index}
           shortedLink={shortLink}
           originalLink={props.originalLinks[index]}
         />
