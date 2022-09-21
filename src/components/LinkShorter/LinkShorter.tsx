@@ -44,6 +44,19 @@ const LinkShorter: React.FunctionComponent = () => {
     setCurrentLink('');
   };
 
+  const removeLinkHandler = (id: number) => {
+    setShortedLinks((prevShortedLinks) => {
+      return prevShortedLinks.filter(
+        (link) => prevShortedLinks.indexOf(link) !== id
+      );
+    });
+    setOriginalLinks((prevOriginalLinks) => {
+      return prevOriginalLinks.filter(
+        (link) => prevOriginalLinks.indexOf(link) !== id
+      );
+    });
+  };
+
   useEffect(() => {
     const shortLinkData = window.localStorage.getItem('SHORTED_LINKS');
     const originalLinkData = window.localStorage.getItem('ORIGINAL_LINKS');
@@ -65,24 +78,24 @@ const LinkShorter: React.FunctionComponent = () => {
       );
     }
 
+    if (shortedLinks.length === 0) {
+      window.localStorage.removeItem('SHORTED_LINKS');
+    }
+
     if (originalLinks.length !== 0) {
       window.localStorage.setItem(
         'ORIGINAL_LINKS',
         JSON.stringify(originalLinks)
       );
     }
+
+    if (originalLinks.length === 0) {
+      window.localStorage.removeItem('ORIGINAL_LINKS');
+    }
   }, [shortedLinks, originalLinks]);
 
-
   return (
-    // <div className={`${styles.input__container} ${styles.input__error}`}>
-    //   <div>
-    //     <input type="text" placeholder="Shorten link a here..." />
-    //     <p className={styles.text__error}>Please add a link</p>
-    //   </div>
-    //   <button>Shorten it!</button>
-    // </div>
-    <React.Fragment>
+    <div>
       <form
         className={
           error
@@ -96,6 +109,7 @@ const LinkShorter: React.FunctionComponent = () => {
             type="text"
             placeholder="Shorten link a here..."
             onChange={linkInputHandler}
+            value={currentLink}
           />
           {error && <p className={styles.text__error}>{error}</p>}
         </div>
@@ -106,10 +120,11 @@ const LinkShorter: React.FunctionComponent = () => {
           <ShortedLinksList
             shortedLinks={shortedLinks}
             originalLinks={originalLinks}
+            removeLink={removeLinkHandler}
           />
         )}
       </section>
-    </React.Fragment>
+    </div>
   );
 };
 

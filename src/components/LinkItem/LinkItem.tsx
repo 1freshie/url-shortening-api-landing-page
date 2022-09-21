@@ -3,8 +3,10 @@ import { useState } from 'react';
 import styles from './LinkItem.module.css';
 
 type Props = {
+  id: number;
   originalLink: string;
   shortedLink: string;
+  removeLink: (id: number) => void;
 };
 
 const copyLinkToClipboard = async (link: string) => {
@@ -31,8 +33,15 @@ const LinkItem: React.FunctionComponent<Props> = (props) => {
       });
   };
 
+  const removeLinkHandler = () => {
+    props.removeLink(props.id);
+  };
+
   return (
-    <li className={styles.link__item__container}>
+    <li
+      className={styles.link__item__container}
+      onDoubleClick={removeLinkHandler}
+    >
       <p>{props.originalLink}</p>
       <div className={styles.short__link__container}>
         <p>{props.shortedLink}</p>
